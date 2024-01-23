@@ -18,7 +18,7 @@ import pyperclip
 from pynput import keyboard
 import tkinter as tk
 
-key = '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'
+key = ''
 client = OpenAI(api_key=key)
 
 gpt_sys = [{
