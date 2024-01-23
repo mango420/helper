@@ -68,7 +68,7 @@ def on_key_pressed(key):
         show_clipboard()
 
 def renew_client():
-    client = OpenAI(api_key='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')
+    client = OpenAI(api_key='sk-xxxx')
     print('Client renewed')
 
 def show_clipboard():
