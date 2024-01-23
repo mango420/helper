@@ -59,7 +59,7 @@ df = pd.DataFrame({'height': heights})
 
 print(df)
 
-## Theoriefragen (F11 / ist probably sus):
+## Theoriefragen (F9 / ist probably sus):
 
 ### 1. Was ist Data Cleaning?
 

@@ -18,7 +18,8 @@ import pyperclip
 from pynput import keyboard
 import tkinter as tk
 
-client = OpenAI(api_key='sk-xxxx')
+key = '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'
+client = OpenAI(api_key=key)
 
 gpt_sys = [{
         'role': 'system',
@@ -68,14 +69,14 @@ def on_key_pressed(key):
         show_clipboard()
 
 def renew_client():
-    client = OpenAI(api_key='sk-xxxx')
+    client = OpenAI(api_key=key)
     print('Client renewed')
 
 def show_clipboard():
-    root = tk.Tk()
-    root.withdraw()
-    answer = pyperclip.paste()
-    tk.messagebox.showinfo('Answer', answer)
+    print(pyperclip.paste())
+    window = tk.Tk()
+    tk.Label(window, text=pyperclip.paste()).pack()
+    window.mainloop()
 
 with keyboard.Listener(on_press=on_key_pressed) as listener:
     listener.join()
