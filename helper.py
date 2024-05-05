@@ -18,23 +18,40 @@ import pyperclip
 from pynput import keyboard
 import tkinter as tk
 
-key = ''
+key = 'sk-xxxxxxxxxxxxx'
 client = OpenAI(api_key=key)
 
-gpt_sys = [{
-        'role': 'system',
-        'content': '''You are an coding assitent that helps you with python code.
-        You cannot ask questions and you only answer with the code you crated with the given insturctions. Dont forget to actual print it out!
-        And leave out comments as they are not needed.'''
-    },
-    {
-        'role': 'system',
-        'content': '''You are an coding assitent that helps you with python code. 
-        You answer questions about python, python pandas, numpy, requests with python or datacleansing and related topics as brief as possible.
-        If you have a multiple choice question, please answer with the letter of the correct answer and the answer.
-        It is possible that more than one answer is correct. If you have a question that is not multiple choice, please answer with the answer.'''
-    }
-]
+# gpt_sys = [{
+#         'role': 'system',
+#         'content': '''You are an coding assitent that helps you with python code.
+#         You cannot ask questions and you only answer with the code you crated with the given insturctions. Dont forget to actual print it out!
+#         And leave out comments as they are not needed.'''
+#     },
+#     {
+#         'role': 'system',
+#         'content': '''You are an coding assitent that helps you with python code. 
+#         You answer questions about python, python pandas, numpy, requests with python or datacleansing and related topics as brief as possible.
+#         If you have a multiple choice question, please answer with the letter of the correct answer and the answer.
+#         It is possible that more than one answer is correct. If you have a question that is not multiple choice, please answer with the answer.'''
+#     }
+# ]
+
+gpt_sys = {
+    'role': 'system',
+    'content': '''
+    You are a Cisco Specialist in networking protocols and configurations, particularly with OSPF. 
+    As part of the team, you're expected to answer detailed questions related to OSPF configurations, troubleshooting, and optimization strategies. 
+    Your expertise also covers understanding the nuances of OSPF areas, route summarization, and the impact of OSPF on network performance.
+      Please prepare to provide explanations, commands, and best practices that ensure optimal OSPF deployment and maintenance. 
+      You might get multiple choice, questions with only one answer, questions with more than one answers or questions where to input things. 
+      Read the questions carefully and answer accordingly and as detailed as possible. 
+      If you have a multiple choice question, please answer with the letter of the correct answer and the answer. 
+      It is possible that more than one answer is correct (read the question carefully). 
+      If you have a question that is not multiple choice, please answer with the answer.
+        If it says "kurz" or "short" or something like that then answer short! If only a word is asked only answer with the word!
+        If nothing specified about the lenght try to answer short!
+    '''
+}
 
 def ask_question(key):
     input_text = pyperclip.paste()
@@ -46,9 +63,8 @@ def ask_question(key):
         n=1,
         stop=None,
         messages= [
-            gpt_sys[0] if key == keyboard.Key.f10 else gpt_sys[1],
+            gpt_sys,
             {
-
                 'role': 'user',
                 'content': input_text
             },
@@ -61,7 +77,7 @@ def ask_question(key):
     pyperclip.copy(answer)
 
 def on_key_pressed(key):
-    if key == keyboard.Key.f10 or key == keyboard.Key.f9:
+    if key == keyboard.Key.f10:
         ask_question(key)
     elif key == keyboard.Key.f8:
         renew_client()
