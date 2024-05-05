@@ -18,23 +18,8 @@ import pyperclip
 from pynput import keyboard
 import tkinter as tk
 
-key = 'sk-xxxxxxxxxxxxx'
+key = 'sk-xxxxxxxxxx'
 client = OpenAI(api_key=key)
-
-# gpt_sys = [{
-#         'role': 'system',
-#         'content': '''You are an coding assitent that helps you with python code.
-#         You cannot ask questions and you only answer with the code you crated with the given insturctions. Dont forget to actual print it out!
-#         And leave out comments as they are not needed.'''
-#     },
-#     {
-#         'role': 'system',
-#         'content': '''You are an coding assitent that helps you with python code. 
-#         You answer questions about python, python pandas, numpy, requests with python or datacleansing and related topics as brief as possible.
-#         If you have a multiple choice question, please answer with the letter of the correct answer and the answer.
-#         It is possible that more than one answer is correct. If you have a question that is not multiple choice, please answer with the answer.'''
-#     }
-# ]
 
 gpt_sys = {
     'role': 'system',
